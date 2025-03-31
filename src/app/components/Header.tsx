@@ -1,12 +1,14 @@
-"use client";
+'use client';
 
-import Link from "next/link";
-import { signIn, signOut, useSession } from "next-auth/react";
-import Image from "next/image";
+import Link from 'next/link';
+import { signIn, signOut, useSession } from 'next-auth/react';
+import Image from 'next/image';
 
 export default function Header() {
   const { data: session, status } = useSession();
-  const isLoading = status === "loading";
+  const isLoading = status === 'loading';
+
+  console.log('Session:', { status, session });
 
   return (
     <header className="bg-white shadow-sm">
@@ -29,14 +31,14 @@ export default function Header() {
                   {session.user.image ? (
                     <Image
                       src={session.user.image}
-                      alt={session.user.name || "프로필 이미지"}
+                      alt={session.user.name || '프로필 이미지'}
                       width={32}
                       height={32}
                       className="rounded-full"
                     />
                   ) : (
                     <div className="h-8 w-8 rounded-full bg-blue-500 flex items-center justify-center text-white">
-                      {session.user.name?.charAt(0) || "U"}
+                      {session.user.name?.charAt(0) || 'U'}
                     </div>
                   )}
                   <span className="text-sm font-medium text-gray-700">
@@ -52,7 +54,7 @@ export default function Header() {
               </div>
             ) : (
               <button
-                onClick={() => signIn("google")}
+                onClick={() => signIn('google')}
                 className="inline-flex items-center px-4 py-2 border border-transparent text-sm font-medium rounded-md text-white bg-blue-600 hover:bg-blue-700"
               >
                 구글 로그인
